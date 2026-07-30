@@ -4,6 +4,7 @@ package io.herald.myspringweb.Controller;
 import io.herald.myspringweb.Model.UserTable;
 import io.herald.myspringweb.Repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,8 +49,14 @@ public class TotalController {
         //Repository login
         if(uRepo.existsByUsernameAndPassword(username,hashPassword)){
 
-            List<UserTable> users = uRepo.findAll();
-            model.addAttribute("userlist",users);
+            List<UserTable> totalUsers = uRepo.findAll();
+            model.addAttribute("totalUsers",totalUsers);
+
+            HttpSession session= request.getSession();
+            //Session revolves around the http requests, we are trying to get a running session with the above code
+            session.setAttribute("username",username);
+
+            //After a successful siginin, a username is provided a session acc to their username
             return "homePage";
         }
 
@@ -78,5 +85,14 @@ public class TotalController {
         model.addAttribute("signupSuccess","You Have succesfully signed Up. Please login");
         return "loginPage";
     }
+
+    @GetMapping("/home")
+    public String homePage(Model m){
+        m.addAttribute("totalUsers",uRepo.findAll());
+        return "homePage";
+    }
+
+    //Model attribute is only for the upcoming page.
+    //Request attribute is for the whole session.
 
 }

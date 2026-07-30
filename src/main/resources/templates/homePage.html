@@ -18,7 +18,24 @@
         <td>Edit Username</td>
         <td>Delete User</td>
     </tr>
-    <tr>
+    <tr th:each="user:${totalUsers}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getUsername()}"></td>
+        <td>
+            <form method="POST" action="editUser">
+                <input type="hidden" name="id" th:value="${user.getId()}">
+                <input type="submit" value="Edit this username">
+            </form>
+
+        </td>
+        <td>
+            <form method="POST" action="deleteUser">
+                <input type="hidden" th:value="${user.getId()}" name="id">
+                <input type="submit" value="Delete">
+
+            </form>
+        </td>
+
 
     </tr>
 </table>
