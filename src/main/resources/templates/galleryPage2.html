@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery Cloudinary</title>
+</head>
+<body>
+<div th:insert="navbar.html"></div>
+<h1>This is cloudinary gallery page!</h1>
+<hr>
+<form method="POST" action="gallery2" enctype="multipart/form-data">
+    <input type="file" name="image">
+    <input type="submit" value="Upload Image">
+</form>
+<hr>
+<h4>Images from Cloudinary:</h4>
+<span th:each="image:${cloudImages}">
+    <img th:src="${image.getImageUrl()}" width="200" height="200">
+
+</span>
+
+</body>
+</html>
