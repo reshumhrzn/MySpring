@@ -6,6 +6,8 @@ import io.herald.myspringweb.Repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
@@ -17,6 +19,9 @@ import java.util.List;
 //Controller handles http requests (Get, Post, Put, Delete)
 @Controller
 public class TotalController {
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     //Autowired helps in dependancy injection, provides all the required
     //functions and APIs to a class/interface object no new keyword is required
@@ -72,6 +77,7 @@ public class TotalController {
         String username, password;
         username = request.getParameter("username");
         password = request.getParameter("password");
+        String email= request.getParameter("email");
 
         //md5- DigestUtils
         String hashPassword = DigestUtils.md5DigestAsHex(password.getBytes());
@@ -81,6 +87,13 @@ public class TotalController {
         ut.setPassword(hashPassword);
 
         uRepo.save(ut);
+
+        //Mail Sender
+        SimpleMailMessage mailMessage=new SimpleMailMessage();
+        mailMessage.setTo(email);
+        mailMessage.setSubject("Signup Successful");
+        mailMessage.setText("Welcome" +username+ "!");
+        mailSender.send(mailMessage);
 
         model.addAttribute("signupSuccess","You Have succesfully signed Up. Please login");
         return "loginPage";
