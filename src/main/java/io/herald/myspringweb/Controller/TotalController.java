@@ -92,8 +92,8 @@ public class TotalController {
         SimpleMailMessage mailMessage=new SimpleMailMessage();
         mailMessage.setTo(email);
         mailMessage.setSubject("Signup Successful");
-        mailMessage.setText("Welcome" +username+ "!");
-        mailSender.send(mailMessage);
+        mailMessage.setText("Welcome " +username+ "!");
+        //mailSender.send(mailMessage);
 
         model.addAttribute("signupSuccess","You Have succesfully signed Up. Please login");
         return "loginPage";
