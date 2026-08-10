@@ -15,4 +15,5 @@ public interface UserRepository extends JpaRepository<UserTable, Integer> {
     //suggest our repository to look for it, if the value exists or not.
     boolean existsByUsernameAndPassword(String un, String pwd);
 
+    UserTable findByUsername(String username);
 }
