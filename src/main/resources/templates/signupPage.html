@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: head('Sign Up')"></head>
 <body>
 
-<h1>Welcome to Sign Up</h1>
-<hr>
-<form method="POST" action="/signupPost">
-    Username: <input type="text" name="username"><br><br>
-    Password: <input type="password" name="password"><br><br>
-    Email: <input type="email" name="email"><br><br>
+<div class="auth-wrapper">
+    <div class="card">
+        <div class="card-header">
+            <h3>Sign Up</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/signupPost">
+                <div class="mb-3">
+                    <label class="form-label" style="color:#fff;">Username</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" style="color:#fff;">Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" style="color:#fff;">Email</label>
+                    <input type="email" class="form-control" name="email">
+                </div>
+                <input type="submit" value="SignUp" class="btn btn-accent float-end">
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-center links">
+                <a href="/">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <input type="submit" value="SignUp">
-
-</form>
-<br><br>
-<hr>
-<a href="/">Back</a>
 
 </body>
 </html>

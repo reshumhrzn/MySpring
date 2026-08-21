@@ -11,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -54,7 +53,6 @@ public class TotalController {
         username = request.getParameter("username");
         password = request.getParameter("password");
 
-        String hashPassword = DigestUtils.md5DigestAsHex(password.getBytes());
         //Repository login
         //if(uRepo.existsByUsernameAndPassword(username,hashPassword)){
         try {
@@ -71,12 +69,15 @@ public class TotalController {
                 //After a successful siginin, a username is provided a session acc to their username
                 return "homePage";
 
+            } else {
+                //username not found, or password didn't match
+                model.addAttribute("LoginError", "Invalid username or password.");
             }
         } catch (Exception e) {
             //message lai model ko attribute bhanincha
             model.addAttribute("message", "Too many username");
         }
-            return "loginPage";
+        return "loginPage";
 
 
     }
@@ -87,9 +88,6 @@ public class TotalController {
         username = request.getParameter("username");
         password = request.getParameter("password");
         String email= request.getParameter("email");
-
-        //md5- DigestUtils
-        //String hashPassword = DigestUtils.md5DigestAsHex(password.getBytes());
 
         String hashPassword= passwordEncoder.encode(password);
 

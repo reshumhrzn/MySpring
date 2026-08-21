@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>First Page</title>
-</head>
+<head th:replace="fragments/head :: head('First Page')"></head>
 <body>
 
-<h1>Welcome to the first page</h1>
-<hr>
-<a href="signup">Click here for signup.</a>
-<br><br>
-
-<a href="login">Click here for Login.</a>
+<div class="page-container text-center">
+    <h1>Welcome to the first page</h1>
+    <hr>
+    <div class="d-flex flex-column align-items-center gap-3 mt-4">
+        <a href="signup" class="btn btn-accent">Click here for signup.</a>
+        <a href="login" class="btn btn-accent">Click here for Login.</a>
+    </div>
+</div>
 
 </body>
 </html>

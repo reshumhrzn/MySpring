@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Gallery</title>
-</head>
+<head th:replace="fragments/head :: head('Gallery')"></head>
 <body>
-<div th:insert="navbar.html"></div>
-<h1>Welcome to the Gallery Page!</h1>
-<br>
-<form method="POST" action="galleryPost" enctype="multipart/form-data">
-    <input type="file" name="imgFile">
-    <input type="submit" value="Upload Image">
-</form>
-<hr>
-<h4>Images from TIDB:</h4>
-<span th:each="image:${session.totalImages}">
-    <img th:src=" 'data:image/jpeg;base64,' + ${image.getImage}" width="200" height="200" >
-</span>
 
+<nav th:replace="fragments/navbar :: navbar"></nav>
 
+<div class="page-container">
+    <h1>Welcome to the Gallery Page!</h1>
+    <br>
+<!--    <form method="POST" action="galleryPost" enctype="multipart/form-data" class="d-flex align-items-center gap-2 mb-3">-->
+<!--        <input type="file" name="imgFile" class="form-control" style="max-width: 320px;">-->
+<!--        <input type="submit" value="Upload Image" class="btn btn-accent">-->
+<!--    </form>-->
+    <hr>
+    <h4>Images from TIDB:</h4>
+    <span th:each="image:${session.totalImages}">
+        <img th:src=" 'data:image/jpeg;base64,' + ${image.getImage}" width="200" height="200" class="rounded shadow-sm m-1">
+    </span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
