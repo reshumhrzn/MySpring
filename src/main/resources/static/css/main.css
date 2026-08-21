@@ -1,0 +1,132 @@
+/* ==========================================================
+   main.css — single source of truth for app-wide styling.
+   Referenced by every page via the shared <head> fragment.
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+:root {
+    --brand-accent: #FFC312;
+    --brand-dark: #1a1a1a;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    background-color: #f4f5f7;
+}
+
+/* ---------- Layout ---------- */
+.page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+/* ---------- Navbar ---------- */
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* ---------- Auth page centering wrapper (login/signup) ---------- */
+.auth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ---------- Cards (used on login/signup) ---------- */
+.card {
+    position: relative; /* anchors .social_icon's absolute positioning */
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    overflow: visible;
+}
+
+.card-header h3 {
+    color: #fff;
+}
+
+.social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+}
+
+.social_icon span {
+    font-size: 40px;
+    margin-left: 10px;
+    color: var(--brand-accent);
+}
+
+.social_icon span:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: var(--brand-accent);
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.remember {
+    color: #fff;
+}
+
+.remember input {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.login_btn {
+    color: black;
+    background-color: var(--brand-accent);
+    width: 120px;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: white;
+}
+
+/* ---------- General call-to-action buttons (index page, etc.) ---------- */
+.btn-accent {
+    color: black;
+    background-color: var(--brand-accent);
+    padding: 12px 28px;
+    white-space: nowrap;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn-accent:hover {
+    color: black;
+    background-color: white;
+}
+
+.links a {
+    margin-left: 4px;
+}
+
+/* ---------- Tables (used on homePage) ---------- */
+.table td {
+    vertical-align: middle;
+}
+
+.table form {
+    margin: 0;
+}
