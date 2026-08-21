@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LogoutController {
 
-    @GetMapping("/logout")
+    @GetMapping("/logOut")
     public String logoutGet(HttpServletRequest request, Model m){
 
         HttpSession session = request.getSession();
         session.invalidate();
 
-        m.addAttribute("logout","Logout Successful");
+        m.addAttribute("logOut","Logout Successful");
         return "loginPage";
 
     }
